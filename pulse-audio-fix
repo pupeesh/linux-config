@@ -1,0 +1,12 @@
+https://askubuntu.com/questions/1015384/keep-audio-awake
+
+Edit /etc/pulse/default.pa and comment the following line:
+load-module module-suspend-on-idle
+
+becomes:
+
+#load-module module-suspend-on-idle
+
+then run:
+pulseaudio -k
+pulseaudio –start
