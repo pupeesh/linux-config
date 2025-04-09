@@ -1,0 +1,26 @@
+Go to: /usr/share/wireplumber/scripts/node
+sudo nvim suspend-node.lua 
+Comment out (multiline comment in .lua files - [[ ]] ):
+
+[[ if cur_state == "idle" then
+honor "session.suspend-timeout-seconds" if specified
+local timeout =
+tonumber(node.properties["session.suspend-timeout-seconds"]) or 3
+if timeout == 0 then
+return
+end
+-- add idle timeout; multiply by 1000, timeout_add() expects ms
+sources[id] = Core.timeout_add(timeout * 1000, function()
+-- Suspend the node
+Log.info(node, "was idle for a while; suspending ...")
+node:send_command("Suspend")
+-- Unref the source
+sources[id] = nil
+-- false (== G_SOURCE_REMOVE) destroys the source so that this
+ -- function does not get fired again after 3 seconds
+return false
+end)
+end ]]
+
+systemctl --user restart wireplumber.service pipewire.service
+pactl list sinks | grep State
