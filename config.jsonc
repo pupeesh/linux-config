@@ -1,0 +1,24 @@
+{
+  "modules": [
+    "title",
+    "os",
+    "host",
+    "kernel",
+    "uptime",
+    "packages",
+    "cpu",
+    "gpu",
+    "memory",
+    "disk",
+    {
+      "type": "font",
+      "format": "{1}\n                        {2}"
+    },
+    "de",
+    "wm",
+    "wmtheme",
+    "icons",
+    "terminal",
+    "terminalfont"
+  ]
+}
